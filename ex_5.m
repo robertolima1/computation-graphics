@@ -5,6 +5,12 @@ nir = im2double(imread("gavea_nir.png"));
 
 img_true = cat(3,r(:,:,1),g(:,:,2),b(:,:,3));
 figure,imshow(img_true);
+title("Imagem normal")
 ndvi = (nir - r) ./ (nir + r);
-img =ndvi > 0.5;
-figure,imshow(img);
+ndvi =ndvi > 0.1;
+figure,imshow(img_true.*ndvi);
+title("Imagem sem cidade")
+ndvi_neg = 1 - ndvi;
+figure,imshow(img_true.*ndvi_neg);
+title("Imagem sem vegetação")
+
